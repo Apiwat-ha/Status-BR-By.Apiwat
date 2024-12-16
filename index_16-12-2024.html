@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Status BR By Apiwat</title>
+  <style>
+     /* Reset Default */
+     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+    }
+
+    /* Container หลัก */
+    .container {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: auto;
+      height: 90vh;
+    }
+
+    /* Row Styling */
+    .row {
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+      position: relative;
+    }
+
+    /* Styling กล่อง */
+    .box {
+      text-align: center;
+      padding: 10px;
+      width: 200px;
+      height: 90px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 16px;
+      color: rgb(253, 250, 250); /* Default color for text */
+      transition: background-color 0.3s ease, color 0.3s ease;
+      position: relative;
+    }
+
+    /* Styling ปุ่ม */
+    .btn {
+      margin: 5px auto;
+      padding: 3px 5px;
+      border: 1px solid white;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 10px;
+      background-color: white;
+      color: black;
+    }
+
+    /* Styling สำหรับกล่องหลัก */
+    .main-box {
+      background-color: #010a01; /* สีเขียวสำหรับกล่องหลัก */
+      color: white;
+      font-size: 18px;
+    }
+
+    /* ปุ่มลบ - ปรับขนาดให้เป็นสี่เหลี่ยม */
+    .delete-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 5px;  /* ขนาดความกว้างของปุ่ม */
+      height: 5px; /* ขนาดความสูงของปุ่ม */
+      background-color: rgb(245, 243, 243);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 4px;
+      text-align: center;
+    }
+     /* Styling for Date */
+     #currentDate {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #130101;
+      font-weight: bold;
+      font-family: 'Arial', sans-serif;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้กับข้อความ */
+    }
+
+    /* Styling for Time */
+    #currentTime {
+      text-align: center;
+      font-size: 16px;
+      color: #444;
+      font-family: 'Courier New', monospace;
+    }
+ /* Reset Default */
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+    }
+
+    /* Login Styling */
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .login-box {
+      text-align: center;
+      background-color: #fff;
+      padding: 150px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .login-box input {
+      margin: 5px 0;
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+
+    .login-box button {
+      padding: 8px 15px;
+      font-size: 16px;
+      color: #f8f6f6ea;
+      background-color: #111111;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-box button:hover {
+      background-color: #079c02;
+    }
+
+    /* Main UI Container */
+    .container {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: auto;
+      height: 90vh;
+    }
+
+    .logout-btn {
+      margin: 10px 0;
+      padding: 8px 5px;
+      border: none;
+      background-color: #f5f4f4;
+      color: rgb(247, 14, 14);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #f1f5f1;
+    }
+
+    /* Date Styling */
+    #currentDate {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #dd0c0c;
+    }
+
+    /* Box Styling */
+    .box {
+      text-align: center;
+      padding: 10px;
+      width: 200px;
+      height: 90px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 16px;
+      color: rgb(253, 250, 250);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn {
+      margin: 5px auto;
+      padding: 3px 5px;
+      border: 1px solid white;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 10px;
+      background-color: white;
+      color: black;
+    }
+
+    .main-box {
+      background-color: #010a01;
+      color: white;
+      font-size: 18px;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 5px;
+      height: 5px;
+      background-color: rgb(245, 243, 243);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 4px;
+      text-align: center;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="login-container" id="loginScreen">
+    <div class="login-box">
+      <h2>เข้าสู่ระบบ</h2>
+      <input type="text" id="username" placeholder="Username" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+    </div>
+  </div>
+
+  <div class="container" id="mainContainer" style="display:none;">
+    <h3>Welcome to Status br <span id="userDisplay"></span></h3>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    const users = {
+      "user1": "password1",
+      "user2": "password2",
+      "admin": "admin123"
+    };
+
+    function login() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (users[username] && users[username] === password) {
+        document.getElementById('loginScreen').style.display = "none";
+        document.getElementById('mainContainer').style.display = "flex";
+        document.getElementById('userDisplay').innerText = username;
+        alert(`Login สำเร็จ! Welcome, ${username}`);
+      } else {
+        alert("Username หรือ Password ไม่ถูกต้อง!");
+      }
+    }
+
+    function logout() {
+      document.getElementById('mainContainer').style.display = "none";
+      document.getElementById('loginScreen').style.display = "flex";
+      document.getElementById('username').value = "";
+      document.getElementById('password').value = "";
+      alert("ออกจากระบบเรียบร้อย");
+    }
+
+    function showDate() {
+      const today = new Date();
+      const formattedDate = today.toLocaleDateString('th-TH', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      document.getElementById('currentDate').innerText = `${formattedDate}`;
+    }
+
+    window.onload = showDate;
+  </script>
+
+  <!-- Section to show today's date -->
+  <div id="currentDate"></div>
+
+  <!-- Main container -->
+  <div class="container" id="mainContainer"></div>
+
+  <!-- Main Container (Hidden Until Logged In) -->
+  <div class="container" id="mainContainer" style="display:none;"></div>
+
+  <script>
+    const correctPassword = "factory"; // รหัสผ่านที่ถูกต้องสำหรับการเปลี่ยนสถานะ
+
+    const customRowNames = [
+    
+      "Site 1 ห้วยทับมอญ/เขาชะเมา",
+      //"Site 2 นิคมฯกบินทร์บุรี", 
+      "Site 5 สถานีทวนสัญญาณนิคมฯบ่อวิน", 
+      "Site 7 สถานีเรด้าฝนหลวงสัตหีบ", 
+      "Site 8 สถานีทวนสัญญาณบ้านฉาง",
+      "Site 9 อ่าวอุดม",
+      "Site 10 สถานีป่ายุบใน", 
+      //"Site 11 สค.ระยอง", 
+      "Site 13 สถานีชุมสายโทรศัพท์แกลง", 
+      //"Site 14 บางแสน", 
+      "Site 16 ชุมสายปลวกแดง",
+      "Site 17 ไออาร์พีซี ยูเอชวี (IRPC UHV)",
+      "Site 19 ดอนหัวฬอ",
+      "Site 21 ไออาร์พีซีพอร์ท (IRPC Port)",
+      "Site 22 นิคมฯบางปู",
+      "Site 23 ไออาร์พีซี พระประแดง",
+      "Site 24 สค.ราชบุรี",
+      "Site 25 หมู่บ้านตะพง",
+      "Site 26 พูลตาหลวง 2",
+      "Site 27 บางจาก สุขุมวิท 62",
+      "Site 28 บุรีรัมย์ (BRIC)",
+      "Site 29 ไออาร์พีซี_2",
+      "Site 31 อาคารภูไบ ไทยออยด์",
+      "Site 32 หนองข้างคอก",
+      "Site 33 หนองขาม",
+      "Site 35 ชุมสายวังจันทร์",
+      "Site 36 นิคมฯ มาบตาพุด",
+      "Site 37 สถานีชุมสายโทรศัพท์กระเฉด",
+      "Site 39 นิคมฯ อาร์ไอแอล",
+      "Site 41 สถานีทวนสัญญาณเขายายดา",
+      "Site 43 นิคมฯ มาบตาพุด",
+      "Site 44 นิคมฯเอเซีย (AIE)",
+      "Site 45 สถานีชุมสายโทรศัพท์พลา",
+      "Site 46 สถานีชุมสายโทรศัพท์เกาะเสม็ด",
+      "Site 47 นิคมโรจนะ (อยุธยา)",
+      "Site 48",
+      "Site 50 เอสพีอาร์ซี(SPRC)",
+      "Site 51 นิคมพัฒนา",
+      "Site 52 กลางนิคมฯ มาบตาพุด",
+      "Site 54 ไทยออยด์",
+      "Site 55 บ้านค่าย",
+      "Site 56 โรงไฟฟ้า กัลฟ์ศรีราชา",
+      "Site 57 สถานีกระแสบน",
+      "Site 58 บี.กริมเพาเวอร์ นิคมเอเซีย",
+      "Site 59 ระยองโอลีฟิน (ROC)",
+      "Site 60 สถานีทับมา",
+      "Site 61 เอสโซ่ แหลมฉบัง",
+      "Site 62 สนามบินอู่ตะเภา",
+      "Site 63 กลางนิคมฯ มาบตาพุด",
+      "Site 64 สัตหีบ 2",
+      "Site 66 นิคมฯโรจนะ(ปราจีนบุรี)",
+      "Site 67 นิคมฯ เกตุเวย์ซิตี้",
+      "Site 68 นิคมฯระยองอินดัส -เตรียนปาร์ค (RIP)",
+      "Site 69 ชุมสายบ้านค่าย",
+      "Site 70 การท่าเรือมาบตาพุด",
+      "Site 71 เอสโซ่ แหลมฉบัง_2",
+      "Site 73 เทเลพอร์ท",
+      "Site 74 สถานีทวนสัญญาณเขาฉลาก",
+      "Site 75 แหลมฉบัง",
+      "Site 76 TOT",
+      "Site 77 ชลบุรี",
+      "Site 78 สค.มาบตาพุด",
+      "Site 79 สถานีชุมสายโทรศัพท์เนินดินแดง",
+      "Site 80 สค.ระยอง",
+      "Site 83 TMMA",
+      "Site 84 ปลวกแดง",
+      "Site 85 ไออาร์พีซี",
+      "Site 86 พีทีทีจีซี (PTTGC)",
+      "Site 88 ที่ทำการไปรษณีย์กร่ำ",
+      "Site 89 โรงไฟฟ้า กัลฟ์ปลวกแดง (GPD)",
+      "Site 90 สถานีชุมสายโทรศัพท์ทุ่งควายกิน"
+    ];
+    // ใช้ WebSocket สำหรับอัปเดตข้อมูลจากเซิร์ฟเวอร์
+const socket = new WebSocket('ws://your-websocket-server-url');
+socket.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  document.getElementById('currentDate').innerText = data.date;
+  document.getElementById('currentTime').innerText = data.time;
+};
+
+// ใช้ setInterval เพื่ออัปเดตข้อมูลบางอย่าง เช่น การแสดงเวลาปัจจุบัน
+setInterval(() => {
+  const now = new Date();
+  document.getElementById('currentDate').innerText = now.toLocaleDateString();
+  document.getElementById('currentTime').innerText = now.toLocaleTimeString();
+}, 10000); // ทุกๆ 10 วินาที
+
+
+    function login() {
+      const password = document.getElementById('password').value;
+      if (password === correctPassword) {
+        document.getElementById('loginScreen').style.display = "none";
+        document.getElementById('mainContainer').style.display = "flex";
+        generateBoxes();
+      } else {
+        alert("รหัสผ่านไม่ถูกต้อง!");
+      }
+    }
+
+    // ฟังก์ชันสำหรับการสร้างกล่องหลัก
+    function createMainBox(id, label) {
+      const boxContainer = document.createElement('div');
+      boxContainer.classList.add('box', 'main-box');
+      boxContainer.id = id;
+      boxContainer.innerText = label;
+
+      // เพิ่มปุ่มลบในกล่องหลัก
+      const deleteBtn = document.createElement('button');
+      deleteBtn.classList.add('delete-btn');
+      deleteBtn.innerText = 'X';
+      deleteBtn.addEventListener('click', () => {
+        const password = prompt("กรุณากรอกรหัสเพื่อทำการลบกล่อง:");
+        if (password === correctPassword) {
+          boxContainer.remove(); // ลบกล่องเมื่อรหัสถูกต้อง
+          saveDeletedState(id, true); // บันทึกการลบ
+        } else {
+          alert("รหัสไม่ถูกต้อง!");
+        }
+      });
+      boxContainer.appendChild(deleteBtn);
+
+      return boxContainer;
+    }
+
+    // ฟังก์ชันสำหรับการสร้างกล่องที่มีปุ่ม ON/OFF
+    function createSubBox(id, label) {
+      const boxContainer = document.createElement('div');
+      boxContainer.classList.add('box');
+      boxContainer.id = id;
+      boxContainer.innerText = label;
+
+      const btn = document.createElement('button');
+      btn.classList.add('btn');
+      btn.innerText = "OFF";
+
+      btn.addEventListener('click', () => handleClick(btn, id));
+
+      boxContainer.appendChild(btn);
+
+      // เพิ่มปุ่มลบในกล่องย่อย
+      const deleteBtn = document.createElement('button');
+      deleteBtn.classList.add('delete-btn');
+      deleteBtn.innerText = 'X';
+      deleteBtn.addEventListener('click', () => {
+        const password = prompt("กรุณากรอกรหัสเพื่อทำการลบกล่อง:");
+        if (password === correctPassword) {
+          boxContainer.remove(); // ลบกล่องเมื่อรหัสถูกต้อง
+          saveDeletedState(id, true); // บันทึกการลบ
+        } else {
+          alert("รหัสไม่ถูกต้อง!");
+        }
+      });
+      boxContainer.appendChild(deleteBtn);
+
+      return boxContainer;
+    }
+    function displayDate() {
+      const date = new Date();
+      const day = date.getDate();
+      const month = date.getMonth() + 1;  // เดือนเริ่มจาก 0
+      const year = date.getFullYear();
+      document.getElementById('currentDate').innerHTML = `${day}/${month}/${year}`;
+    }
+
+    function handleLogin() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username === correctUsername && password === correctPassword) {
+        document.getElementById('loginPage').style.display = "none";
+        document.getElementById('mainPage').style.display = "block";
+        displayDate(); // เรียกใช้การแสดงวันที่
+        loadStates();  // โหลดสถานะปัจจุบัน
+        startWebSocket(); // เริ่มเชื่อมต่อ WebSocket
+      } else {
+        document.getElementById('loginError').style.display = "block";
+      }
+    }
+
+    function createBox(name, count) {
+      const boxContainer = document.createElement('div');
+      boxContainer.classList.add('box', 'main-box');
+      boxContainer.innerHTML = `${name} <br> BR ${count}`;
+      boxContainer.setAttribute('data-site-id', count); // ตั้ง attribute สำหรับการเลือกกล่อง
+      return boxContainer;
+    }
+
+    function loadStates() {
+      const container = document.getElementById('mainContainer');
+      customRowNames.forEach((siteName, index) => {
+        const siteBox = createBox(siteName, index + 1);
+        container.appendChild(siteBox);
+      });
+    }
+
+
+    function handleClick(btn, boxId) {
+      const password = prompt("Enter Password:");
+      if (password === correctPassword) {
+        toggleButtonState(btn, boxId);
+      } else {
+        alert("Password ไม่ถูกต้อง!");
+      }
+    }
+
+    function toggleButtonState(btn, boxId) {
+      const isOn = btn.innerText === "ON";
+      const box = btn.parentElement;
+
+      if (isOn) {
+        btn.innerText = "OFF";
+        box.style.backgroundColor = "red";
+        box.style.color = "black";  // Change text color to black when OFF
+        saveState(boxId, false);
+      } else {
+        btn.innerText = "ON";
+        box.style.backgroundColor = "green";
+        box.style.color = "white";  // Change text color to white when ON
+        saveState(boxId, true);
+      }
+    }
+
+    function saveState(boxId, state) {
+      localStorage.setItem(boxId, JSON.stringify(state));
+    }
+
+    function saveDeletedState(boxId, state) {
+      // บันทึกสถานะการลบกล่อง
+      let deletedBoxes = JSON.parse(localStorage.getItem('deletedBoxes')) || {};
+      deletedBoxes[boxId] = state;
+      localStorage.setItem('deletedBoxes', JSON.stringify(deletedBoxes));
+    }
+
+    function loadStates() {
+      const buttons = document.querySelectorAll('.btn');
+      buttons.forEach(btn => {
+        const boxId = btn.parentElement.id;
+        const savedState = JSON.parse(localStorage.getItem(boxId));
+        if (savedState) {
+          btn.innerText = "ON";
+          btn.parentElement.style.backgroundColor = "green";
+          btn.parentElement.style.color = "white"; // Text color when ON
+        } else {
+          btn.innerText = "OFF";
+          btn.parentElement.style.backgroundColor = "red";
+          btn.parentElement.style.color = "black"; // Text color when OFF
+        }
+      });
+    }
+
+    function loadDeletedBoxes() {
+      const deletedBoxes = JSON.parse(localStorage.getItem('deletedBoxes')) || {};
+      const container = document.getElementById('mainContainer');
+      customRowNames.forEach((siteName, i) => {
+        const row = document.createElement('div');
+        row.classList.add('row');
+
+        const mainBoxId = `site_${i}_0`;
+        if (!deletedBoxes[mainBoxId]) {
+          const mainBox = createMainBox(mainBoxId, siteName);
+          row.appendChild(mainBox);
+        }
+
+        for (let j = 1; j <= 8; j++) {
+          const subBoxId = `site_${i}_BR${j}`;
+          if (!deletedBoxes[subBoxId]) {
+            const subBox = createSubBox(subBoxId, `BR ${j}`);
+            row.appendChild(subBox);
+          }
+        }
+
+        container.appendChild(row);
+      });
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDeletedBoxes();
+      loadStates();
+    });
+  </script>
+</body>
+</html>
